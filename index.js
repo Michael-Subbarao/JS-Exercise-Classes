@@ -151,6 +151,9 @@ class Instructor extends Lambdasian{
   grade(student,subject){
     return `${student.name} receives a perfect score on ${subject}`;
   }
+  changeGrade(student){
+    student.grade += Math.random()*20-10;
+  }
 }
 /*
   TASK 5
@@ -173,6 +176,7 @@ class Student extends Lambdasian{
     this.previousBackground = keys.previousBackground;
     this.className = keys.className;
     this.favSubjects = keys.favSubjects;
+    this.grade = Math.random()*40+61;
    }
    listSubjects(){
      return `Loving ${this.favSubjects.join(', ')}!`;
@@ -182,6 +186,14 @@ class Student extends Lambdasian{
    } 
    sprintChallenge(subject){
      return `${this.name} has begun sprint challenge on ${subject}`;
+   }
+   graduate(){
+     if(this.grade>=70){
+       return `Congratulations ${this.name}, you graduated!`;
+     }
+     else{
+       return  'Better luck next year :(';
+     }
    }
 }
 
@@ -219,8 +231,12 @@ class ProjectManager extends Instructor{
       + This method, when called, will check the grade of the student and see if they're ready to graduate from BloomTech
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
-
-
+const student1 = new Student({name: 'Michael', age: '20'})
+console.log(student1.grade);
+const instructor1 = new Instructor({name: 'Edwardo'})
+instructor1.changeGrade(student1);
+console.log(student1.grade);
+console.log(student1.graduate());
 //End of Challenge
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
 function foo(){
